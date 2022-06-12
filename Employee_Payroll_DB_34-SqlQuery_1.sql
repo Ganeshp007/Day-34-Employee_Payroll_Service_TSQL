@@ -1,0 +1,2 @@
+﻿create database Employee_Payroll_DB_Day_34
+use Employee_Payroll_DB_Day_34
