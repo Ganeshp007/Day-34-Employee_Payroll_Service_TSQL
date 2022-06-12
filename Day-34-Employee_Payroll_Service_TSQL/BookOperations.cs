@@ -56,5 +56,37 @@ namespace Day_34_Employee_Payroll_Service_TSQL
                 connection.Close();
             }
         }
+
+        //Method to retrieve All Records of Employees from DB
+        public void DisplayEmployeeRecord()
+        {
+            EmployeeModel employeeModel = new EmployeeModel();
+            this.connection.Open();
+
+            string query = @"select * from employee_payroll";  //Query to fetch all records from employee_payroll Table
+            //Passign query to sql command object
+            SqlCommand command=new SqlCommand(query, connection);  
+            SqlDataReader sqlDataReader = command.ExecuteReader();
+
+            if(sqlDataReader.HasRows)
+            {
+                Console.WriteLine("\n>> Records Retrieved From DataBase : ");
+                //Read each row
+                while (sqlDataReader.Read())
+                {
+                    employeeModel.EmpId = Convert.ToInt32(sqlDataReader["ID"]);
+                    employeeModel.EmpName = Convert.ToString(sqlDataReader["EmpName"]);
+                    employeeModel.EmpSalary = Convert.ToDouble(sqlDataReader["EmpSalary"]);
+                    employeeModel.JoiningDate = Convert.ToDateTime(sqlDataReader["JoiningDate"]);
+                    //Display Record of current object
+                    Console.WriteLine("\nEmployee ID :- {0} \nEmployee Name :- {1} \nEmployee monthly Salary :- {2} \nEmployee Joining Date :- {3}", employeeModel.EmpId, employeeModel.EmpName, employeeModel.EmpSalary,employeeModel.JoiningDate);
+                }
+                
+                //Close sqlDataReader Connection
+                sqlDataReader.Close();
+            }
+            //Close Connection
+            connection.Close();
+        }
     }
 }

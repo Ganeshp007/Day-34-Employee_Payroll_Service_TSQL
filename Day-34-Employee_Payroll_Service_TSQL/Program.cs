@@ -7,7 +7,7 @@ bool check = true;
 while (check)
 {
     Console.WriteLine("\nChoose the Operation :");
-    Console.WriteLine("1.Add New Employee To Employee_Payroll_DB\n2.Exit");
+    Console.WriteLine("1.Add New Employee To Employee_Payroll_DB\n2.Display Employee Records from Employee_payroll_DB\n3.Exit");
     Console.Write("\n> ENter your choice : ");
     int option = Convert.ToInt32(Console.ReadLine());
 
@@ -28,10 +28,16 @@ while (check)
                 count--;
             }
             if (count == 0)
-                Console.WriteLine("\nRecords Inserted into AddressBook DB successfully...");
+                Console.WriteLine("\n> Records Inserted into AddressBook DB successfully...");
             break;
 
         case 2:
+            Console.WriteLine("\n> Employee Records from Employee_Payroll_DB\n");
+            obj.DisplayEmployeeRecord();
+            Console.WriteLine("------------------------------------------------");
+            break;
+
+        case 3:
             check = false;
             break;
 
