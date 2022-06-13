@@ -1,8 +1,12 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Day_34_Employee_Payroll_Service_TSQL;
+using Day_34_Employee_Payroll_Service_TSQL.Models;
 
 Console.WriteLine("----- Welcome to Employee_Payroll System using ADO Library and TSQL -----\n");
 BookOperations obj = new BookOperations();
+EmpPersonalDetailsModel personaldetails = new EmpPersonalDetailsModel();
+EmpPayDetailsModel paydetails = new EmpPayDetailsModel();
+
 bool check = true;
 while (check)
 {
@@ -21,14 +25,18 @@ while (check)
             while (count > 0)
             {
                 BookOperations obj1 = new BookOperations();
+                EmpPersonalDetailsModel personaldetails1 = new EmpPersonalDetailsModel();
+                EmpPayDetailsModel paydetails1 = new EmpPayDetailsModel();
                 num_of_records++;
-                Console.WriteLine("\nEnter Details for contact {0} :", num_of_records);
-                var contactmodel = obj1.getContact();
-                obj1.AddNewEmployeeRecord(contactmodel);
+                Console.WriteLine("\nEnter Details of Employees {0} :", num_of_records);
+                EmployeeModel empRecordModel = obj1.getEmpRecord();
+                EmpPersonalDetailsModel empPersonalDetailsModel=obj1.getEmpPersonalRecords();
+                EmpPayDetailsModel empPayDetailsModel = obj1.getEmpPayRecords();
+                obj1.AddNewEmployeeRecord(empRecordModel,empPersonalDetailsModel,empPayDetailsModel);
                 count--;
             }
             if (count == 0)
-                Console.WriteLine("\n> Records Inserted into AddressBook DB successfully...");
+                Console.WriteLine("\n> Records Inserted into Employee_Payroll_DB successfully...");
             break;
 
         case 2:
